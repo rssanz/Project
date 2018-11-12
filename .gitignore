@@ -1,0 +1,16 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/Data/obj
+/.vs/PruebaSolution/v15/Server/sqlite3
+/DataEntities/obj
+/DataInterfaces/obj
+/ServiceRate/obj
+/ServiceRateInterfaces/obj
+/ServiceTransaction/obj
+/ServiceTransactionInterface/obj
+/ServiceUtils/obj
+/ServiceUtilsInterface/obj
+/UnitTest/obj
+/WebApi/obj

@@ -1,0 +1,35 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="wwwroot\**" />
+    <Content Remove="wwwroot\**" />
+    <EmbeddedResource Remove="wwwroot\**" />
+    <None Remove="wwwroot\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Data\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.App" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.1.1" />
+    <PackageReference Include="Serilog.Extensions.Logging.File" Version="1.1.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\ServiceRateInterfaces\ServiceRateInterfaces.csproj" />
+    <ProjectReference Include="..\ServiceRate\ServiceRate.csproj" />
+    <ProjectReference Include="..\ServiceTransactionInterface\ServiceTransactionInterface.csproj" />
+    <ProjectReference Include="..\ServiceTransaction\ServiceTransaction.csproj" />
+    <ProjectReference Include="..\ServiceUtilsInterface\ServiceUtilsInterface.csproj" />
+    <ProjectReference Include="..\ServiceUtils\ServiceUtils.csproj" />
+  </ItemGroup>
+
+  <ProjectExtensions><VisualStudio><UserProperties appsettings_1json__JSONSchema="" /></VisualStudio></ProjectExtensions>
+
+</Project>
