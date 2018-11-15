@@ -10,7 +10,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\DataEntities\DataEntities.csproj" />
-    <ProjectReference Include="..\DataInterfaces\DataInterfaces.csproj" />
     <ProjectReference Include="..\ServiceUtilsInterface\ServiceUtilsInterface.csproj" />
   </ItemGroup>
 

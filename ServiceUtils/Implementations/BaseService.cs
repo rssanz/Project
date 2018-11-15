@@ -1,25 +1,21 @@
-﻿using Data.DataAccess;
+﻿using Data_EF.UnitOfWork;
+using DataEntities.Domain;
 using Microsoft.Extensions.Logging;
-using Newtonsoft.Json;
 using ServiceUtilsInterface.Interfaces;
 using System;
 using System.Collections.Generic;
 
 namespace ServiceUtils.Implementations
 {
-    public class BaseService<T> : IBaseService<T>
+    public class BaseService<T> : IBaseService<T> where T : Entity, new()
     {
-        private readonly string _endPoint;
-        private readonly string _filePath;
         private readonly ILogger<BaseService<T>> _logger;
-        private readonly IGenericItemDao<T> _gerericDao;
+        private readonly IUnitOfWork _unitOfWork;
 
-        public BaseService(ILogger<BaseService<T>> logger, IGenericItemDao<T> gerericDao, string endPoint, string filePath)
+        public BaseService(ILogger<BaseService<T>> logger, IUnitOfWork unitOfWork)
         {
             _logger = logger;
-            _gerericDao = gerericDao;
-            _endPoint = endPoint;
-            _filePath = filePath;
+            _unitOfWork = unitOfWork;
         }
 
         public List<T> List()
@@ -28,9 +24,7 @@ namespace ServiceUtils.Implementations
             try
             {
                 _logger.LogInformation("BaseService.List");
-                var result = _gerericDao.Get(_endPoint, _filePath);
-                if (!String.IsNullOrEmpty(result))
-                    resultList = JsonConvert.DeserializeObject<List<T>>(result);
+                resultList = _unitOfWork.GetRepository<T>().Get();
             }
             catch (Exception e)
             {
@@ -38,6 +32,62 @@ namespace ServiceUtils.Implementations
             }
 
             return resultList;
+        }
+
+        public T Get(int id)
+        {
+            T result = new T();
+            try
+            {
+                _logger.LogInformation("BaseService.Get");
+                result = _unitOfWork.GetRepository<T>().GetByID(id);
+            }
+            catch (Exception e)
+            {
+                _logger.LogError("BaseService.Get: {e}", e);
+            }
+
+            return result;
+        }
+
+        public void Insert(T item)
+        {
+            try
+            {
+                _logger.LogInformation("BaseService.Insert");
+                _unitOfWork.GetRepository<T>().Insert(item);
+            }
+            catch (Exception e)
+            {
+                _logger.LogError("BaseService.Insert: {e}", e);
+            }
+        }
+
+        public void Update(int id, T item)
+        {
+            try
+            {
+                //use "id" to check against the "item" actual id
+                _logger.LogInformation("BaseService.Update");
+                _unitOfWork.GetRepository<T>().Update(item);
+            }
+            catch (Exception e)
+            {
+                _logger.LogError("BaseService.Update: {e}", e);
+            }
+        }
+
+        public void Delete(int id)
+        {
+            try
+            {
+                _logger.LogInformation("BaseService.Delete");
+                _unitOfWork.GetRepository<T>().Delete(id);
+            }
+            catch (Exception e)
+            {
+                _logger.LogError("BaseService.Delete: {e}", e);
+            }
         }
     }
 }

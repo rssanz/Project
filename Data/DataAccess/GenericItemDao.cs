@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using DataInterfaces.Interfaces;
+using Microsoft.Extensions.Logging;
 using ServiceUtils.Interfaces;
 using System;
 

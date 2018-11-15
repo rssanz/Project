@@ -1,4 +1,4 @@
-﻿using Data.Domain;
+﻿using DataEntities.Domain;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System.Collections.Generic;
@@ -20,8 +20,8 @@ namespace WebApi.Controllers
             _logger = logger;
         }
 
-        [HttpGet(Name = "GetTransactions")]
-        public ActionResult<List<TransactionItem>> GetTransactions()
+        [HttpGet]
+        public ActionResult<List<Transaction>> GetTransactions()
         {
             try
             {
@@ -30,12 +30,12 @@ namespace WebApi.Controllers
             }
             catch (Exception e)
             {
-                _logger.LogError("Getting Transactions info");
-                return new List<TransactionItem>();
+                _logger.LogError("Getting Transactions info {e}", e);
+                return new List<Transaction>();
             }
         }
 
-        [HttpGet("{code}/{currency}", Name = "GetTransactionsSku")]
+        [HttpGet("{code}/{currency}")]
         public ActionResult<List<string>> GetTransactionsSku(string code, string currency)
         {
             try
@@ -45,7 +45,7 @@ namespace WebApi.Controllers
             }
             catch (Exception e)
             {
-                _logger.LogError("Getting Transactions info");
+                _logger.LogError("Getting Transactions info {e}", e);
                 return new List<string>();
             }
         }

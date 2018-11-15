@@ -1,4 +1,4 @@
-﻿namespace Data.DataAccess
+﻿namespace DataInterfaces.Interfaces
 {
     public interface IGenericItemDao<T>
     {

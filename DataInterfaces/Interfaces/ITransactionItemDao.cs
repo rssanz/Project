@@ -1,6 +1,6 @@
 ﻿using Data.Domain;
 
-namespace Data.DataAccess
+namespace DataInterfaces.Interfaces
 {
     public interface ITransactionItemDao : IGenericItemDao<TransactionItem>
     {

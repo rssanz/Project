@@ -1,5 +1,4 @@
-﻿using Data.Domain;
-using Data.DataAccess;
+﻿using DataEntities.Domain;
 using ServiceRate.Interfaces;
 using ServiceTransaction.Interfaces;
 using System;
@@ -7,22 +6,21 @@ using System.Collections.Generic;
 using System.Linq;
 using Microsoft.Extensions.Logging;
 using ServiceUtils.Implementations;
+using Data_EF.UnitOfWork;
 
 namespace ServiceTransaction.Implementations
 {
-    public class TransactionService : BaseService<TransactionItem>, ITransactionService
+    public class TransactionService : BaseService<Transaction>, ITransactionService
     {
-        private const string _filePath = "Data/Transactions.txt";
-        private const string _endPoint = "http://quiet-stone-2094.herokuapp.com/transactions.json";
         private readonly IRateService _rateService;
         private readonly ILogger _logger;
-        private readonly ITransactionItemDao _transactionItemDao;
+        private readonly IUnitOfWork _unitOfWork;
 
-        public TransactionService(IRateService rateService, ILogger<TransactionService> logger, ITransactionItemDao transactionItemDao) : base(logger, transactionItemDao, _endPoint, _filePath)
+        public TransactionService(IRateService rateService, ILogger<TransactionService> logger, IUnitOfWork unitOfWork) : base(logger, unitOfWork)
         {
             _rateService = rateService;
             _logger = logger;
-            _transactionItemDao = transactionItemDao;
+            _unitOfWork = unitOfWork;
         }
 
         public List<string> CalculateSku(string code, string currency)
@@ -39,7 +37,7 @@ namespace ServiceTransaction.Implementations
                 var rates = _rateService.List();
 
                 decimal total = 0;
-                foreach (TransactionItem t in filteredTransactions)
+                foreach (var t in filteredTransactions)
                 {
                     decimal convertedAmount = _rateService.Convert(rates, t.Currency, currency, t.Amount);
                     total += convertedAmount;

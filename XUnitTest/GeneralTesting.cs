@@ -1,16 +1,15 @@
+using Data_EF.UnitOfWork;
 using DataEntities.Domain;
 using Microsoft.Extensions.Logging;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Moq;
 using Newtonsoft.Json;
 using ServiceRate.Implementations;
 using ServiceRate.Interfaces;
 using System.Collections.Generic;
-using Moq;
-using Data_EF.UnitOfWork;
+using Xunit;
 
-namespace GeneralTesting
+namespace XUnitTest
 {
-    [TestClass]
     public class GeneralTesting
     {
         public const string _rateString = @"[
@@ -22,7 +21,7 @@ namespace GeneralTesting
                 {""From"":""USD"",""To"":""CAD"",""Ratio"":1.61}
                 ]";
 
-        [TestMethod]
+        [Fact]
         public void CheckConvertUSDtoEUR()
         {
             var mockLogger = new Mock<ILogger<RateService>>();
@@ -30,16 +29,15 @@ namespace GeneralTesting
 
             IRateService serviceRate = new RateService(mockLogger.Object, mockUnitOfWork.Object);
 
-            
             List<Rate> rates = JsonConvert.DeserializeObject<List<Rate>>(_rateString);
 
             decimal amount = 10.5m;
             decimal result = 14.37m;
 
-            Assert.AreEqual(serviceRate.Convert(rates, "USD", "EUR", amount), result);
+            Assert.Equal(serviceRate.Convert(rates, "USD", "EUR", amount), result);
         }
 
-        [TestMethod]
+        [Fact]
         public void CheckConvertEURtoUSD()
         {
             var mockLogger = new Mock<ILogger<RateService>>();
@@ -52,7 +50,7 @@ namespace GeneralTesting
             decimal amount = 10.5m;
             decimal result = 7.62m;
 
-            Assert.AreEqual(serviceRate.Convert(rates, "EUR", "USD", amount), result);
+            Assert.Equal(serviceRate.Convert(rates, "EUR", "USD", amount), result);
         }
     }
 }

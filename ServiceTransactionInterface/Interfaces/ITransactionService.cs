@@ -1,10 +1,10 @@
-﻿using Data.Domain;
+﻿using DataEntities.Domain;
 using ServiceUtilsInterface.Interfaces;
 using System.Collections.Generic;
 
 namespace ServiceTransaction.Interfaces
 {
-    public interface ITransactionService : IBaseService<TransactionItem>
+    public interface ITransactionService : IBaseService<Transaction>
     {
         List<string> CalculateSku(string code, string currency);
     }
