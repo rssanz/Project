@@ -1,8 +1,5 @@
 ﻿using Data_EF.Repositories;
 using DataEntities.Domain;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Data_EF.UnitOfWork
 {

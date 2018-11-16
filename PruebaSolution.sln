@@ -11,7 +11,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ServiceTransaction", "Servi
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ServiceUtils", "ServiceUtils\ServiceUtils.csproj", "{17E2E49E-8790-4347-AA0D-07EA66B196DD}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UnitMSTest", "UnitTest\UnitMSTest.csproj", "{6077B2AA-A64D-4B70-90D5-A9E123DBA7EE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UnitTest", "UnitTest\UnitTest.csproj", "{6077B2AA-A64D-4B70-90D5-A9E123DBA7EE}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DataProjects", "DataProjects", "{28F75902-086F-4ABE-B5B9-7BDC659CFC41}"
 EndProject
@@ -29,7 +29,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Data_EF", "Data_EF\Data_EF.
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataInterfaces_EF", "DataInterfaces_EF\DataInterfaces_EF.csproj", "{4F0AE040-4911-45AB-9380-7E29FBB1A548}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XUnitTest", "XUnitTest\XUnitTest.csproj", "{F4C7CD59-3A12-4BAD-9D67-F8266C92650C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "XUnitTest", "XUnitTest\XUnitTest.csproj", "{F4C7CD59-3A12-4BAD-9D67-F8266C92650C}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Test", "Test", "{2D5A2345-1B79-496F-89B3-5ED8D968C4FD}"
 EndProject

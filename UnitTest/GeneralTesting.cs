@@ -29,8 +29,7 @@ namespace GeneralTesting
             var mockUnitOfWork = new Mock<IUnitOfWork>();
 
             IRateService serviceRate = new RateService(mockLogger.Object, mockUnitOfWork.Object);
-
-            
+    
             List<Rate> rates = JsonConvert.DeserializeObject<List<Rate>>(_rateString);
 
             decimal amount = 10.5m;
