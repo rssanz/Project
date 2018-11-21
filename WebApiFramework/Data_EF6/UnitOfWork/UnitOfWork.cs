@@ -29,30 +29,30 @@ namespace Data_EF.UnitOfWork
 
         public void Commit()
         {
-            //_context.SaveChanges();
+            _context.SaveChanges();
         }
 
         public void Dispose()
         {
-            //_context.Dispose();
+            _context.Dispose();
         }
 
         public void RejectChanges()
         {
-            //foreach (var entry in _context.ChangeTracker.Entries()
-            //      .Where(e => e.State != EntityState.Unchanged))
-            //{
-            //    switch (entry.State)
-            //    {
-            //        case EntityState.Added:
-            //            entry.State = EntityState.Detached;
-            //            break;
-            //        case EntityState.Modified:
-            //        case EntityState.Deleted:
-            //            entry.Reload();
-            //            break;
-            //    }
-            //}
+            foreach (var entry in _context.ChangeTracker.Entries()
+                  .Where(e => e.State != EntityState.Unchanged))
+            {
+                switch (entry.State)
+                {
+                    case EntityState.Added:
+                        entry.State = EntityState.Detached;
+                        break;
+                    case EntityState.Modified:
+                    case EntityState.Deleted:
+                        entry.Reload();
+                        break;
+                }
+            }
         }
     }
 }
