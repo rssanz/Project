@@ -34,20 +34,20 @@ namespace WebApi.Controllers
             }
         }
 
-        //REVISAR ESTA "{code}/{currency}"
-        //[HttpGet]
-        //public List<string> GetTransactionsSku(string code, string currency)
-        //{
-        //    try
-        //    {
-        //        _logger.Info($"Getting Sku {code} info");
-        //        return _transactionService.CalculateSku(code, currency);
-        //    }
-        //    catch (Exception e)
-        //    {
-        //        _logger.Error($"Getting Transactions info {e}", e);
-        //        return new List<string>();
-        //    }
-        //}
+        [HttpGet]
+        [Route("api/transactions/{code}/{currency}")]
+        public List<string> GetTransactionsSku(string code, string currency)
+        {
+            try
+            {
+                _logger.Info($"Getting Sku {code} info");
+                return _transactionService.CalculateSku(code, currency);
+            }
+            catch (Exception e)
+            {
+                _logger.Error($"Getting Transactions info {e}", e);
+                return new List<string>();
+            }
+        }
     }
 }
